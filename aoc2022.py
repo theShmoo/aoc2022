@@ -1,8 +1,12 @@
+"""usage: ./aoc2022 -h"""
 import argparse
 import importlib
+import sys
 
 
 def solve_day(day):
+    """solve the specified day."""
+
     try:
         day_module = importlib.import_module(f'day{day:02d}.day{day:02d}')
 
@@ -22,6 +26,8 @@ def solve_day(day):
 
 
 def main():
+    """Entrypoint of aoc2022."""
+
     parser = argparse.ArgumentParser(
         prog='aoc2022',
         description='advent of code 2022',
@@ -42,4 +48,4 @@ def main():
 
 if __name__ == '__main__':
     if not main():
-        exit(1)
+        sys.exit(1)
