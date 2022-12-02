@@ -77,7 +77,7 @@ def parse_arguments(arguments):
         help='solve a specific day. If not set solve all days')
     parser.add_argument(
         '-p', '--profile',
-        action=argparse.BooleanOptionalAction,
+        action='store_true',
         help='add profiling output.')
 
     return parser.parse_args(arguments)
