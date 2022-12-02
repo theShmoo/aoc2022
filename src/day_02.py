@@ -1,4 +1,4 @@
-"""day02 of aoc2022"""
+"""day 02 of aoc2022"""
 
 
 def calc_points_level_1(enemy, you):
@@ -32,8 +32,8 @@ def calc_points(game, level):
     return calc_points_level_1(enemy, move)
 
 
-def solve(level, data):
-    """solve day02 for the given part and data."""
+def day_02(level, data):
+    """solve day 02 for the given part and data."""
 
     games = [(ord(line[0]) - ord('A'), ord(line[2]) - ord('X'))
              for line in data]

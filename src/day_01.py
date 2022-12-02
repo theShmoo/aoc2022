@@ -1,4 +1,4 @@
-"""day01 of aoc2022"""
+"""day 01 of aoc2022"""
 from itertools import groupby
 
 
@@ -11,8 +11,8 @@ def solve_for_elves(num_elves, data):
     return sum(sum_calories[-num_elves:])
 
 
-def solve(part, data):
-    """solve day01 for the given part and data."""
+def day_01(part, data):
+    """solve day 01 for the given part and data."""
     if part == 1:
         return solve_for_elves(1, data)
     return solve_for_elves(3, data)
