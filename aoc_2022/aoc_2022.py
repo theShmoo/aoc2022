@@ -1,12 +1,12 @@
-"""usage: ./aoc2022 -h"""
+"""usage: ./aoc_2022 -h"""
+
 import argparse
 import importlib
-import sys
 import time
-from utils import load_lines
+from aoc_2022.utils import load_lines
 
 
-def tic_toc_format(tic, toc):
+def tic_toc_fmt(tic, toc):
     """format the time measurements."""
     return f'{toc - tic:0.4f} seconds'
 
@@ -14,8 +14,10 @@ def tic_toc_format(tic, toc):
 def solve_part(day_str, part, data, profiling):
     """solve the specified part of the specified day."""
 
-    print(f'-- solving {day_str} part {part}')
-    day_module = importlib.import_module(day_str)
+    part_str = f'{day_str} part {part}'
+
+    print(f'-- solving {part_str}')
+    day_module = importlib.import_module(f'aoc_2022.{day_str}')
     solve = getattr(day_module, day_str)
 
     tic = time.perf_counter()
@@ -23,21 +25,24 @@ def solve_part(day_str, part, data, profiling):
     toc = time.perf_counter()
 
     if profiling:
-        print(
-            f'-- solved {day_str} part {part} in {tic_toc_format(tic, toc)}\n')
+        print(f'-- solved {part_str} in {tic_toc_fmt(tic, toc)}\n')
 
 
 def solve_day(day, profiling):
     """solve the specified day."""
 
+    day_str = f'day_{day:02d}'
+
     try:
-        day_str = f'day_{day:02d}'
         data = load_lines(day_str, False)
         solve_part(day_str, 1, data, profiling)
         solve_part(day_str, 2, data, profiling)
 
+    except FileNotFoundError as e:
+        print(f'-- unable to get data for {day_str}: [{e}]')
+        return False
     except ImportError as e:
-        print(f'-- unable to import day{day:02d}: [{e}]')
+        print(f'-- unable to import {day_str}: [{e}]')
         return False
 
     return True
@@ -55,16 +60,16 @@ def solve_all_days(profiling):
     toc = time.perf_counter()
 
     if profiling:
-        print(f'++ solved aoc 2022 in {tic_toc_format(tic, toc)}\n')
+        print(f'++ solved aoc 2022 in {tic_toc_fmt(tic, toc)}\n')
 
     return True
 
 
-def parse_arguments():
+def parse_arguments(arguments):
     """parse the command line arguments"""
 
     parser = argparse.ArgumentParser(
-        prog='aoc2022',
+        prog='aoc_2022',
         description='advent of code 2022',
         epilog='by theShmoo')
     parser.add_argument(
@@ -75,13 +80,13 @@ def parse_arguments():
         action=argparse.BooleanOptionalAction,
         help='add profiling output.')
 
-    return parser.parse_args()
+    return parser.parse_args(arguments)
 
 
-def main():
-    """Entrypoint of aoc2022."""
+def start(arguments):
+    """Entrypoint of aoc_2022."""
 
-    args = parse_arguments()
+    args = parse_arguments(arguments)
 
     profiling = args.profile
 
@@ -89,8 +94,3 @@ def main():
         return solve_day(args.day, profiling)
 
     return solve_all_days(profiling)
-
-
-if __name__ == '__main__':
-    if not main():
-        sys.exit(1)

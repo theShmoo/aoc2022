@@ -1,5 +1,5 @@
 """tests for aoc 2022."""
-from src import load_lines, day_01, day_02, day_03
+from aoc_2022 import load_lines, day_01, day_02, day_03
 
 
 def test_day_01_example():
