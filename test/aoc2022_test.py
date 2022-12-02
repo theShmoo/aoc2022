@@ -1,6 +1,6 @@
 """tests for aoc 2022."""
-import pytest
-from src import *
+from src import day01, day02
+from src.utils import load_lines
 
 
 def test_day01_example():

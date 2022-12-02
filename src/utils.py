@@ -7,5 +7,6 @@ def load_lines(day_str, example):
 
     script_dir = dirname(__file__)
     file = "example.txt" if example else "input.txt"
-    with open(join(script_dir, day_str, file), encoding='utf-8') as file_handle:
-        return file_handle.read().splitlines()
+    path = join(script_dir, day_str, file)
+    with open(path, encoding='utf-8') as handle:
+        return handle.read().splitlines()
