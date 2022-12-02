@@ -1,15 +1,4 @@
 """day02 of aoc2022"""
-from os.path import dirname, join
-
-DATA = "input.txt"
-
-
-def load_lines():
-    """loads all lines of the given file as an array of strings."""
-
-    script_dir = dirname(__file__)
-    with open(join(script_dir, DATA), encoding='utf-8') as file:
-        return file.read().splitlines()
 
 
 def calc_points_level_1(enemy, you):
@@ -43,24 +32,12 @@ def calc_points(game, level):
     return calc_points_level_1(enemy, move)
 
 
-def solve(level):
-    """solve for a specified number of elves."""
+def solve(level, data):
+    """solve day02 for the given part and data."""
 
     games = [(ord(line[0]) - ord('A'), ord(line[2]) - ord('X'))
-             for line in load_lines()]
+             for line in data]
 
     points = sum(calc_points(r, level) for r in games)
 
     return points
-
-
-def solve_1():
-    """solve part 1."""
-
-    print(solve(1))
-
-
-def solve_2():
-    """solve part 2."""
-
-    print(solve(2))
