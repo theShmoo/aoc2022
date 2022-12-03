@@ -2,8 +2,8 @@
 
 [advent of code 2022](https://adventofcode.com/2022)
 
-![day](https://img.shields.io/badge/day%20📅-2-blue)
-![stars](https://img.shields.io/badge/stars%20⭐-4-yellow)
+![day](https://img.shields.io/badge/day%20📅-3-blue)
+![stars](https://img.shields.io/badge/stars%20⭐-6-yellow)
 
 ## Development
 
