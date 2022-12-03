@@ -38,13 +38,13 @@ def test_day_03_example():
     """Test day 03 example input."""
 
     data = load_lines('day_03', True)
-    assert day_03(1, data) == 0
-    assert day_03(2, data) == 0
+    assert day_03(1, data) == 157
+    assert day_03(2, data) == 70
 
 
 def test_day_03_real():
     """Test day 03 real input."""
 
     data = load_lines('day_03', False)
-    assert day_03(1, data) == 0
-    assert day_03(2, data) == 0
+    assert day_03(1, data) == 7766
+    assert day_03(2, data) == 2415
