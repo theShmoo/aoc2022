@@ -54,7 +54,7 @@ def solve_all_days(profiling):
     print('++ solving all days\n')
 
     tic = time.perf_counter()
-    for day in range(1, 4):
+    for day in range(1, 5):
         if not solve_day(day, profiling):
             return False
     toc = time.perf_counter()
