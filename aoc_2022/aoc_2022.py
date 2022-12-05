@@ -6,12 +6,16 @@ import time
 from aoc_2022.utils import load_lines
 
 
+possible_parts = [1, 2]
+possible_days = range(1, 7)
+
+
 def tic_toc_fmt(tic, toc):
     """format the time measurements."""
     return f'{toc - tic:0.4f} seconds'
 
 
-def solve_part(day_str, part, data, profiling):
+def solve_part(day_str, part, data, timing):
     """solve the specified part of the specified day."""
 
     part_str = f'{day_str} part {part}'
@@ -24,42 +28,31 @@ def solve_part(day_str, part, data, profiling):
     print(f'>> result: {solve(part, data)}')
     toc = time.perf_counter()
 
-    if profiling:
+    if timing:
         print(f'-- solved {part_str} in {tic_toc_fmt(tic, toc)}\n')
 
 
-def solve_day(day, profiling, example):
+def solve_day(day, parts, timing, example):
     """solve the specified day."""
 
     day_str = f'day_{day:02d}'
 
-    try:
-        data = load_lines(day_str, example)
-        solve_part(day_str, 1, data, profiling)
-        solve_part(day_str, 2, data, profiling)
-
-    except FileNotFoundError as e:
-        print(f'-- unable to get data for {day_str}: [{e}]')
-        return False
-    except ImportError as e:
-        print(f'-- unable to import {day_str}: [{e}]')
-        return False
-
-    return True
+    data = load_lines(day_str, example)
+    for part in parts:
+        solve_part(day_str, part, data, timing)
 
 
-def solve_all_days(profiling, example):
-    """solve all days."""
+def solve_days(days, parts, timing, example):
+    """solve the given days."""
 
-    print('++ solving all days\n')
+    print('++ solving aoc 2022\n')
 
     tic = time.perf_counter()
-    for day in range(1, 6):
-        if not solve_day(day, profiling, example):
-            return False
+    for day in days:
+        solve_day(day, parts, timing, example)
     toc = time.perf_counter()
 
-    if profiling:
+    if timing:
         print(f'++ solved aoc 2022 in {tic_toc_fmt(tic, toc)}\n')
 
     return True
@@ -73,12 +66,15 @@ def parse_arguments(arguments):
         description='advent of code 2022',
         epilog='by theShmoo')
     parser.add_argument(
-        '-d', '--day', type=int,
+        '-d', '--day', type=int, choices=possible_days,
         help='solve a specific day, if not set solve all days')
     parser.add_argument(
-        '-p', '--profile',
+        '-p', '--part', type=int, choices=possible_parts,
+        help='solve only for a specific part, if not set solve for all parts')
+    parser.add_argument(
+        '-t', '--timing',
         action='store_true',
-        help='add profiling output')
+        help='add timinig output')
     parser.add_argument(
         '-e', '--example',
         action='store_true',
@@ -92,10 +88,8 @@ def start(arguments):
 
     args = parse_arguments(arguments)
 
-    profiling = args.profile
+    timing = args.timing
     example = args.example
-
-    if args.day:
-        return solve_day(args.day, profiling, example)
-
-    return solve_all_days(profiling, example)
+    parts = [args.part] if args.part else possible_parts
+    days = [args.day] if args.day else possible_days
+    return solve_days(days, parts, timing, example)
