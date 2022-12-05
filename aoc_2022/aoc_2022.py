@@ -28,13 +28,13 @@ def solve_part(day_str, part, data, profiling):
         print(f'-- solved {part_str} in {tic_toc_fmt(tic, toc)}\n')
 
 
-def solve_day(day, profiling):
+def solve_day(day, profiling, example):
     """solve the specified day."""
 
     day_str = f'day_{day:02d}'
 
     try:
-        data = load_lines(day_str, False)
+        data = load_lines(day_str, example)
         solve_part(day_str, 1, data, profiling)
         solve_part(day_str, 2, data, profiling)
 
@@ -48,14 +48,14 @@ def solve_day(day, profiling):
     return True
 
 
-def solve_all_days(profiling):
+def solve_all_days(profiling, example):
     """solve all days."""
 
     print('++ solving all days\n')
 
     tic = time.perf_counter()
-    for day in range(1, 5):
-        if not solve_day(day, profiling):
+    for day in range(1, 6):
+        if not solve_day(day, profiling, example):
             return False
     toc = time.perf_counter()
 
@@ -74,11 +74,15 @@ def parse_arguments(arguments):
         epilog='by theShmoo')
     parser.add_argument(
         '-d', '--day', type=int,
-        help='solve a specific day. If not set solve all days')
+        help='solve a specific day, if not set solve all days')
     parser.add_argument(
         '-p', '--profile',
         action='store_true',
-        help='add profiling output.')
+        help='add profiling output')
+    parser.add_argument(
+        '-e', '--example',
+        action='store_true',
+        help='use example data')
 
     return parser.parse_args(arguments)
 
@@ -89,8 +93,9 @@ def start(arguments):
     args = parse_arguments(arguments)
 
     profiling = args.profile
+    example = args.example
 
     if args.day:
-        return solve_day(args.day, profiling)
+        return solve_day(args.day, profiling, example)
 
-    return solve_all_days(profiling)
+    return solve_all_days(profiling, example)

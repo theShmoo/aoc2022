@@ -11,12 +11,12 @@ def value_of_item(item):
     return o - uppercase_ord + 26 + 1
 
 
-def day_03(level, data):
+def day_03(part, data):
     """solve day 03 for the given part and data."""
 
     parts = []
 
-    if level == 1:
+    if part == 1:
 
         for line in data:
             size = int(len(line) / 2)
