@@ -18,8 +18,7 @@ As I am working alone on this project there is no strict development process.
 
 ## Usage
 
-
-```
+```man
 usage: aoc_2022 [-h] [-d {1,2,3,4,5,6}] [-p {1,2}] [-t] [-e]
 
 advent of code 2022

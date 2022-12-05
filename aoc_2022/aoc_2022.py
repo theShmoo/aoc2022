@@ -4,6 +4,7 @@ import argparse
 import importlib
 import time
 from aoc_2022.utils import load_lines
+from io import StringIO
 
 
 possible_parts = [1, 2]
@@ -58,9 +59,8 @@ def solve_days(days, parts, timing, example):
     return True
 
 
-def parse_arguments(arguments):
-    """parse the command line arguments"""
-
+def make_parser():
+    """Create the argument parser."""
     parser = argparse.ArgumentParser(
         prog='aoc_2022',
         description='advent of code 2022',
@@ -79,8 +79,19 @@ def parse_arguments(arguments):
         '-e', '--example',
         action='store_true',
         help='use example data')
+    return parser
 
-    return parser.parse_args(arguments)
+
+def parse_arguments(arguments):
+    """parse the command line arguments"""
+
+    return make_parser().parse_args(arguments)
+
+
+def usage():
+    f = StringIO()
+    make_parser().print_help(f)
+    return f.getvalue()
 
 
 def start(arguments):

@@ -7,7 +7,7 @@ from aoc_2022.day_04 import day_04
 from aoc_2022.day_05 import day_05
 from aoc_2022.day_06 import day_06
 from aoc_2022.utils import load_lines
-from aoc_2022.aoc_2022 import start
+from aoc_2022.aoc_2022 import start, usage
 
-__all__ = ['start', 'load_lines', 'day_01',
+__all__ = ['start', 'usage', 'load_lines', 'day_01',
            'day_02', 'day_03', 'day_04', 'day_05', 'day_06']
