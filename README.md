@@ -4,6 +4,8 @@
 
 ![day](https://img.shields.io/badge/day%20📅-6-blue)
 ![stars](https://img.shields.io/badge/stars%20⭐-12-yellow)
+![GitHub CI](https://github.com/theShmoo/aoc2022/actions/workflows/workflow.yml/badge.svg)
+![coverage](https://img.shields.io/badge/coverage-100%25-success)
 
 ## Development
 
@@ -14,7 +16,10 @@ It is written as a python module
 I use github actions for CI/CD.
 As I am working alone on this project there is no strict development process.
 
-![GitHub CI](https://github.com/theShmoo/aoc2022/actions/workflows/workflow.yml/badge.svg)
+### Tests
+
+I test the code of the module with 100% line coverage,
+or otherwise the pipeline will fail.
 
 ## Usage
 
