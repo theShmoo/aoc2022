@@ -86,13 +86,13 @@ def test_day_06_example():
     """Test day 06 example input."""
 
     data = load_lines('day_06', True)
-    assert day_06(1, data) == 0
-    assert day_06(2, data) == 0
+    assert day_06(1, data) == 7
+    assert day_06(2, data) == 19
 
 
 def test_day_06_real():
     """Test day 06 real input."""
 
     data = load_lines('day_06', False)
-    assert day_06(1, data) == 0
-    assert day_06(2, data) == 0
+    assert day_06(1, data) == 1833
+    assert day_06(2, data) == 3425
