@@ -8,7 +8,7 @@ from io import StringIO
 
 
 possible_parts = [1, 2]
-possible_days = range(1, 7)
+possible_days = range(1, 8)
 
 
 def tic_toc_fmt(tic, toc):
