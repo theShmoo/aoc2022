@@ -11,7 +11,7 @@ possible_parts = [1, 2]
 possible_days = range(1, 8)
 
 
-def tic_toc_fmt(tic, toc):
+def timing_fmt(tic, toc):
     """format the time measurements."""
     return f'{toc - tic:0.4f} seconds'
 
@@ -30,7 +30,7 @@ def solve_part(day_str, part, data, timing):
     toc = time.perf_counter()
 
     if timing:
-        print(f'-- solved {part_str} in {tic_toc_fmt(tic, toc)}\n')
+        print(f'-- solved {part_str} in {timing_fmt(tic, toc)}\n')
 
 
 def solve_day(day, parts, timing, example):
@@ -54,9 +54,15 @@ def solve_days(days, parts, timing, example):
     toc = time.perf_counter()
 
     if timing:
-        print(f'++ solved aoc 2022 in {tic_toc_fmt(tic, toc)}\n')
+        print(f'++ solved aoc 2022 in {timing_fmt(tic, toc)}\n')
 
-    return True
+
+def check_positive(value):
+    ivalue = int(value)
+    if ivalue <= 0:
+        raise argparse.ArgumentTypeError(
+            "%s is an invalid positive int value" % value)
+    return ivalue
 
 
 def make_parser():
@@ -79,6 +85,11 @@ def make_parser():
         '-e', '--example',
         action='store_true',
         help='use example data')
+    parser.add_argument(
+        '-r', '--repeat',
+        type=check_positive,
+        default=1,
+        help='repeat the execution several times')
     return parser
 
 
@@ -103,4 +114,14 @@ def start(arguments):
     example = args.example
     parts = [args.part] if args.part else possible_parts
     days = [args.day] if args.day else possible_days
-    return solve_days(days, parts, timing, example)
+
+    repeat = args.repeat
+    if repeat > 1:
+        print(f'## Repeating the execution {repeat} times')
+
+    for r in range(1, repeat + 1):
+        if repeat > 1:
+            print(f'## run {r}')
+        solve_days(days, parts, timing, example)
+
+    return True
