@@ -5,15 +5,22 @@ import importlib
 import time
 from aoc_2022.utils import load_lines
 from io import StringIO
+from contextlib import redirect_stdout
+import sys
 
 
 possible_parts = [1, 2]
 possible_days = range(1, 8)
 
 
+def time_span_fmt(time_span):
+    """format the time measurements."""
+    return f'{time_span:0.4f} seconds'
+
+
 def timing_fmt(tic, toc):
     """format the time measurements."""
-    return f'{toc - tic:0.4f} seconds'
+    return time_span_fmt(toc-tic)
 
 
 def solve_part(day_str, part, data, timing):
@@ -90,6 +97,11 @@ def make_parser():
         type=check_positive,
         default=1,
         help='repeat the execution several times')
+    parser.add_argument(
+        '-q', '--quiet',
+        action='store_true',
+        help='get minimal output.'
+    )
     return parser
 
 
@@ -112,16 +124,34 @@ def start(arguments):
 
     timing = args.timing
     example = args.example
+    quiet = args.quiet
+
     parts = [args.part] if args.part else possible_parts
     days = [args.day] if args.day else possible_days
 
     repeat = args.repeat
     if repeat > 1:
         print(f'## Repeating the execution {repeat} times')
+        if timing:
+            tic = time.perf_counter()
 
-    for r in range(1, repeat + 1):
-        if repeat > 1:
-            print(f'## run {r}')
-        solve_days(days, parts, timing, example)
+    if quiet:
+        out = None
+    else:
+        out = sys.stdout
+
+    with redirect_stdout(out):
+        for r in range(1, repeat + 1):
+            if repeat > 1:
+                print(f'## run {r}')
+            solve_days(days, parts, timing, example)
+
+    if repeat > 1:
+        print(f'## finished repeating the execution {repeat} times')
+        if timing:
+            toc = time.perf_counter()
+            took = toc - tic
+            print(f'## Repeated execution took {time_span_fmt(took)}')
+            print(f'## On average it took {time_span_fmt(took / repeat)}')
 
     return True

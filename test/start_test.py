@@ -25,7 +25,7 @@ def test_start_repeat_with_negativ_number():
 
 
 def test_start_repeat():
-    assert start(['-d', '1', '-p', '1', '-r', '2'])
+    assert start(['-d', '1', '-p', '1', '-r', '2', '-q', '-t'])
 
 
 def test_usage():

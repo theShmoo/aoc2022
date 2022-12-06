@@ -24,7 +24,7 @@ or otherwise the pipeline will fail.
 ## Usage
 
 ```man
-usage: aoc_2022 [-h] [-d {1,2,3,4,5,6,7}] [-p {1,2}] [-t] [-e] [-r REPEAT]
+usage: aoc_2022 [-h] [-d {1,2,3,4,5,6,7}] [-p {1,2}] [-t] [-e] [-r REPEAT] [-q]
 
 advent of code 2022
 
@@ -38,6 +38,7 @@ options:
   -e, --example         use example data
   -r REPEAT, --repeat REPEAT
                         repeat the execution several times
+  -q, --quiet           get minimal output.
 
 by theShmoo
 ```
