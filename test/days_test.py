@@ -103,13 +103,13 @@ def test_day_07_example():
     """Test day 07 example input."""
 
     data = load_lines('day_07', True)
-    assert day_07(1, data) == 0
-    assert day_07(2, data) == 0
+    assert day_07(1, data) == 95437
+    assert day_07(2, data) == 24933642
 
 
 def test_day_07_real():
     """Test day 07 real input."""
 
     data = load_lines('day_07', False)
-    assert day_07(1, data) == 0
-    assert day_07(2, data) == 0
+    assert day_07(1, data) == 1490523
+    assert day_07(2, data) == 12390492

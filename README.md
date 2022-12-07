@@ -2,8 +2,8 @@
 
 [advent of code 2022](https://adventofcode.com/2022)
 
-![day](https://img.shields.io/badge/day%20📅-6-blue)
-![stars](https://img.shields.io/badge/stars%20⭐-12-yellow)
+![day](https://img.shields.io/badge/day%20📅-7-blue)
+![stars](https://img.shields.io/badge/stars%20⭐-14-yellow)
 ![GitHub CI](https://github.com/theShmoo/aoc2022/actions/workflows/workflow.yml/badge.svg)
 ![coverage](https://img.shields.io/badge/coverage-100%25-success)
 
