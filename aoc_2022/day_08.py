@@ -1,12 +1,19 @@
 """day 08 of aoc2022"""
 
 from itertools import product
-import copy
 
 
-def print_grid(grid):
-    for x in grid:
-        print(x)
+def count_visible(height, arr):
+    count = 0
+    for i in arr:
+        count += 1
+        if i >= height:
+            break
+    return count
+
+
+def is_maximum(height, arr):
+    return max(arr) < height
 
 
 def day_08(part, data):
@@ -14,59 +21,31 @@ def day_08(part, data):
 
     height = len(data)
 
-    grid = [list(data[y]) for y in range(height)]
-    print_grid(grid)
+    grid = [[int(x) for x in data[y]] for y in range(height)]
+    grid_t = [list(x) for x in zip(*grid)]
 
     width = len(grid[0])
 
-    candidates = [[0] * height for w in range(width)]
-
-    # left
-    left = copy.deepcopy(grid)
-    left_score = copy.deepcopy(candidates)
-
-    for x, y in product(range(width), range(height)):
-        if x == 0:
-            candidates[x][y] = 1
-        else:
-            if left[x][y] > left[x-1][y]:
-                candidates[x][y] = 1
-                left_score[x][y] = left_score[x-1][y] + 1
-            else:
-                left[x][y] = left[x-1][y]
-                left_score[x][y] = 0
-
-    right = copy.deepcopy(grid)
-    for x, y in product(reversed(range(width)), range(height)):
-        if x == width - 1:
-            candidates[x][y] = 1
-        else:
-            if right[x][y] > right[x+1][y]:
-                candidates[x][y] = 1
-            else:
-                right[x][y] = right[x+1][y]
-
-    top = copy.deepcopy(grid)
-    for x, y in product(range(width), range(height)):
-        if y == 0:
-            candidates[x][y] = 1
-        else:
-            if top[x][y] > top[x][y-1]:
-                candidates[x][y] = 1
-            else:
-                top[x][y] = top[x][y-1]
-
-    bottom = copy.deepcopy(grid)
-    for x, y in product(range(width), reversed(range(height))):
-        if y == height - 1:
-            candidates[x][y] = 1
-        else:
-            if bottom[x][y] > bottom[x][y+1]:
-                candidates[x][y] = 1
-            else:
-                bottom[x][y] = bottom[x][y+1]
-
     if part == 1:
-        return sum(candidates[x][y] for x, y in
-                   product(range(width),
-                           range(height)))
+        fun = is_maximum
+        score = width * 2 + (height - 2) * 2
+    else:
+        fun = count_visible
+        score = 0
+
+    for x, y in product(range(1, width-1), range(1, height-1)):
+        h = grid[x][y]
+
+        left = fun(h, reversed(grid[x][:y]))
+        right = fun(h, grid[x][y + 1:])
+        top = fun(h, reversed(grid_t[y][:x]))
+        bottom = fun(h, grid_t[y][x + 1:])
+
+        if part == 1:
+            if left or right or top or bottom:
+                score += 1
+        else:
+            new_score = left * right * top * bottom
+            score = max(score, new_score)
+
+    return score
