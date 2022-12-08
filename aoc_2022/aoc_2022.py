@@ -10,7 +10,7 @@ import sys
 
 
 possible_parts = [1, 2]
-possible_days = range(1, 8)
+possible_days = range(1, 9)
 
 
 def time_span_fmt(time_span):
