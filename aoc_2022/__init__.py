@@ -14,4 +14,4 @@ from aoc_2022.utils import load_lines
 from aoc_2022.aoc_2022 import start, usage
 
 __all__ = ['start', 'usage', 'load_lines', 'day_01', 'day_02', 'day_03',
-    'day_04', 'day_05', 'day_06', 'day_07', 'day_08', 'day_09', 'day_10']
+           'day_04', 'day_05', 'day_06', 'day_07', 'day_08', 'day_09', 'day_10']
