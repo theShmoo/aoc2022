@@ -2,6 +2,7 @@
 from aoc_2022 import load_lines
 from aoc_2022 import day_01, day_02, day_03, day_04
 from aoc_2022 import day_05, day_06, day_07, day_08
+from aoc_2022 import day_09
 
 
 def test_day_01_example():
@@ -130,3 +131,19 @@ def test_day_08_real():
     data = load_lines('day_08', False)
     assert day_08(1, data) == 1713
     assert day_08(2, data) == 268464
+
+
+def test_day_09_example():
+    """Test day 09 example input."""
+
+    data = load_lines('day_09', True)
+    assert day_09(1, data) == 13
+    assert day_09(2, data) == 1
+
+
+def test_day_09_real():
+    """Test day 09 real input."""
+
+    data = load_lines('day_09', False)
+    assert day_09(1, data) == 6563
+    assert day_09(2, data) == 2653
