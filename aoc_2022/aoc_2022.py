@@ -43,9 +43,10 @@ def solve_part(day_str, part, data, timing):
 def solve_day(day, parts, timing, example):
     """solve the specified day."""
 
+    data = load_lines(2022, day, example)
+
     day_str = f'day_{day:02d}'
 
-    data = load_lines(day_str, example)
     for part in parts:
         solve_part(day_str, part, data, timing)
 
