@@ -51,7 +51,6 @@ def day_13(part, data):
         invalid = []
         pairs = chunks(packets, 2)
         for i, p in enumerate(pairs):
-            print(p)
             if compare(p[0], p[1]) < 0:
                 invalid.append(i + 1)
         return sum(invalid)

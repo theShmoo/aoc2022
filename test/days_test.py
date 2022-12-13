@@ -220,13 +220,13 @@ def test_day_13_example():
     """Test day 13 example input."""
 
     data = load_lines(2022, 13, True)
-    assert day_13(1, data) == 0
-    assert day_13(2, data) == 0
+    assert day_13(1, data) == 13
+    assert day_13(2, data) == 140
 
 
 def test_day_13_real():
     """Test day 13 real input."""
 
     data = load_lines(2022, 13, False)
-    assert day_13(1, data) == 0
-    assert day_13(2, data) == 0
+    assert day_13(1, data) == 6046
+    assert day_13(2, data) == 21423

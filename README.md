@@ -5,7 +5,7 @@
 ![day](https://img.shields.io/badge/day%20📅-12-blue)
 ![stars](https://img.shields.io/badge/stars%20⭐-24-yellow)
 ![GitHub CI](https://github.com/theShmoo/aoc2022/actions/workflows/workflow.yml/badge.svg)
-![coverage](https://img.shields.io/badge/coverage-99%25-success)
+![coverage](https://img.shields.io/badge/coverage-98%25-success)
 
 ## Development
 

@@ -4,18 +4,6 @@
 from itertools import product
 
 
-def print_grid(grid, edges):
-    s = ""
-    for y, line in enumerate(grid):
-        for x, c in enumerate(line):
-            if (x, y) in edges:
-                s += '#'
-            else:
-                s += chr(c)
-        s += '\n'
-    print(s)
-
-
 def find_start_and_end(grid):
     height = len(grid)
     width = len(grid[0])
